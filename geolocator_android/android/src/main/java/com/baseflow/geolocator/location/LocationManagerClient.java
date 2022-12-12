@@ -73,23 +73,18 @@ class LocationManagerClient implements LocationClient, LocationListener {
     return false;
   }
 
-  private static String getBestProvider(
-      LocationManager locationManager, LocationAccuracy accuracy) {
-      Criteria criteria = new Criteria();
-      criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-      criteria.setHorizontalAccuracy(Criteria.ACCURACY_MEDIUM);
-      criteria.setBearingRequired(false);
-      criteria.setAltitudeRequired(false);
-      criteria.setCostAllowed(true);
-      criteria.setPowerRequirement(Criteria.POWER_LOW);
-
-      String provider = locationManager.getBestProvider(criteria, true);
-      if (provider.trim().isEmpty()) {
-          List<String> providers = locationManager.getProviders(true);
-          if (providers.size() > 0) provider = providers.get(0);
-      }
-      return provider;
-  }
+    private static String getBestProvider(
+            LocationManager locationManager) {
+        boolean netWorkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        if (netWorkEnabled) {
+            return LocationManager.NETWORK_PROVIDER;
+        }
+        boolean passiveEnabled = locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER);
+        if (passiveEnabled) {
+            return LocationManager.PASSIVE_PROVIDER;
+        }
+        return LocationManager.GPS_PROVIDER;
+    }
 
   private static float accuracyToFloat(LocationAccuracy accuracy) {
     switch (accuracy) {
