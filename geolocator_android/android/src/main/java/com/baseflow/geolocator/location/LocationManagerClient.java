@@ -79,10 +79,6 @@ class LocationManagerClient implements LocationClient, LocationListener {
         if (netWorkEnabled) {
             return LocationManager.NETWORK_PROVIDER;
         }
-        boolean passiveEnabled = locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER);
-        if (passiveEnabled) {
-            return LocationManager.PASSIVE_PROVIDER;
-        }
         return LocationManager.GPS_PROVIDER;
     }
 
