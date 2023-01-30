@@ -50,6 +50,18 @@ class MethodChannelGeolocator extends GeolocatorPlatform {
   }
 
   @override
+  Future<void> stopAllPositionUpdates() async {
+    try {
+      // ignore: omit_local_variable_types
+      _methodChannel.invokeMethod('stopAllPositionUpdates');
+    } on PlatformException catch (e) {
+      final error = _handlePlatformException(e);
+
+      throw error;
+    }
+  }
+
+  @override
   Future<LocationPermission> requestPermission() async {
     try {
       // ignore: omit_local_variable_types

@@ -73,6 +73,9 @@ class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
       case "getCurrentPosition":
         onGetCurrentPosition(call, result);
         break;
+      case "stopAllPositionUpdates":
+        stopAllPositionUpdates();
+        break;
       case "openAppSettings":
         boolean hasOpenedAppSettings = Utils.openAppSettings(this.context);
         result.success(hasOpenedAppSettings);
@@ -189,6 +192,10 @@ class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
         (ErrorCodes errorCode) ->
             result.error(errorCode.toString(), errorCode.toDescription(), null));
   }
+
+  private void stopAllPositionUpdates() {
+      geolocationManager.stopAllPositionUpdates();
+  }  
 
   private void onGetCurrentPosition(MethodCall call, MethodChannel.Result result) {
     try {

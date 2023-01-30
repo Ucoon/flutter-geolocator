@@ -49,6 +49,12 @@ abstract class GeolocatorPlatform extends PlatformInterface {
     );
   }
 
+  Future<void> stopAllPositionUpdates() {
+    throw UnimplementedError(
+      'stopAllPositionUpdates() has not been implemented.',
+    );
+  }
+
   /// Request permission to access the location of the device.
   ///
   /// Returns a [Future] which when completes indicates if the user granted

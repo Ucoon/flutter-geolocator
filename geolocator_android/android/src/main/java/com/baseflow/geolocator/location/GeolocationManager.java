@@ -60,6 +60,14 @@ public class GeolocationManager
     locationClient.stopPositionUpdates();
   }
 
+  public void stopAllPositionUpdates() {
+    for (int i = 0; i < locationClients.size(); i++) {
+        LocationClient locationClient = locationClients.get(i);
+        locationClient.stopPositionUpdates();
+    }
+    locationClients.clear();
+  }
+
   public LocationClient createLocationClient(
       Context context,
       boolean forceAndroidLocationManager,
