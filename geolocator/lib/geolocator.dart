@@ -25,6 +25,10 @@ class Geolocator {
   static Future<LocationPermission> checkPermission() =>
       GeolocatorPlatform.instance.checkPermission();
 
+  ///stop all location request
+  static Future<void> stopAllPositionUpdates() =>
+      GeolocatorPlatform.instance.stopAllPositionUpdates();
+
   /// Request permission to access the location of the device.
   ///
   /// Returns a [Future] which when completes indicates if the user granted

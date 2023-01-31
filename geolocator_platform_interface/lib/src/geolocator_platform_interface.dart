@@ -49,6 +49,7 @@ abstract class GeolocatorPlatform extends PlatformInterface {
     );
   }
 
+  ///stop all location request
   Future<void> stopAllPositionUpdates() {
     throw UnimplementedError(
       'stopAllPositionUpdates() has not been implemented.',
